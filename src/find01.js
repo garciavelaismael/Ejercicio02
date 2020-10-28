@@ -24,26 +24,35 @@ db.inventory.find({
     qty: {$gt: 45}
 }).pretty()
 
+/*Cuando el campo es el mismo no hace falta repetirlo. Con and ímplicito*/
+db.inventory.find({
+    qty: {$lt: 60, $gt: 45}
+}).pretty()
+
+/*No tienen el status "A"*/
+db.inventory.find({
+	status: {$not: {$eq: "A"}}
+}).pretty()
+
+/*Muestra todos los que no tengan cantidad 5 o 15. En este caso se muestran todos*/
+db.inventory.find({
+	 qty: { $nin: [ 5, 15 ]}
+}).pretty()
+
 /*Los que tienen qty > 45 y < 60. Con and explícito, con el operador $and*/
 db.inventory.find({
     $and: [ {qty: {$lt: 60}}, {qty: {$gt: 45}}]    
 }).pretty()
-
 /*Me devuelve el documento:
 {
-        "_id" : ObjectId("5f9817f7a08505f9256ffcaa"),
-        "item" : "notebook",
-        "qty" : 50,
-        "size" : {
-                "h" : 8.5,
-                "w" : 11,
-                "uom" : "in"
-        },
-        "status" : "A"
+	"_id" : ObjectId("5f9875108799aa98e071a13b"),
+	"item" : "notebook",
+	"qty" : 50,
+	"size" : {
+		"h" : 8.5,
+		"w" : 11,
+		"uom" : "in"
+	},
+	"status" : "A"
 }
-
-/*Lo mismo que el anterior pero sin repetir qty*/
-db.inventory.find({
-    qty: {$lt: 60, $gt: 45}
-}).pretty()
 
