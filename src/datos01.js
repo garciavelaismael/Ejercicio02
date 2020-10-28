@@ -1,4 +1,4 @@
-/*Inserta datos iniciales y elimina el resto*/
+/*Elimina la coleccion y añade datos iniciales*/
 db.inventory.drop()
 db.inventory.insertMany([
     { 
@@ -10,7 +10,7 @@ db.inventory.insertMany([
             uom: "cm" 
         }, 
         status: "A"
-     },
+    },
     { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A" },
     { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
     { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
