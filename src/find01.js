@@ -39,6 +39,16 @@ db.inventory.find({
 	 qty: { $nin: [ 5, 15 ]}
 }).pretty()
 
+/*Busca los item que empiecen por n*/
+db.inventory.find({
+	item: {$regex: /^n/} 
+})
+
+/*Muestra los que terminan en r*/
+db.inventory.find({
+	item: {$regex: /r$/} 
+}).pretty()
+
 /*Los que tienen qty > 45 y < 60. Con and explícito, con el operador $and*/
 db.inventory.find({
     $and: [ {qty: {$lt: 60}}, {qty: {$gt: 45}}]    
